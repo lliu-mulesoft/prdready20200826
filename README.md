@@ -15,3 +15,4 @@ Here's my dependency. **You only need to change the `groupId` to match your Orga
       <type>zip</type>
     </dependency>
 ```
+Finally, you need to change the organization ID inside the `global.xml` for the APIkit global element.
