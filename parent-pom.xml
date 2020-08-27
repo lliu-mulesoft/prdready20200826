@@ -19,7 +19,35 @@
 
   <name>Solutions Parent POM</name>
 
+  <properties>
+    <ap.client_id>**Provided from the CLI**</ap.client_id>
+    <ap.client_secret>**Provided from the CLI**</ap.client_secret>
+  </properties>
+
   <build>
+  
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>false</filtering>
+      </resource>
+      <resource>
+        <directory>src/main/resources-filtered</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
+    
+    <testResources>
+      <testResource>
+        <directory>src/test/resources</directory>
+        <filtering>false</filtering>
+      </testResource>
+      <testResource>
+        <directory>src/test/resources-filtered</directory>
+        <filtering>true</filtering>
+      </testResource>
+    </testResources>
+  
     <pluginManagement>
       <plugins>
         <plugin>
@@ -31,6 +59,20 @@
           <artifactId>mule-maven-plugin</artifactId>
           <extensions>true</extensions>
           <configuration>
+            <cloudHubDeployment>
+              <muleVersion>${app.runtime}</muleVersion>
+              <server>cloudhub</server>
+              <applicationName>gkar-20200826-check-in-papi-dev</applicationName>
+              <environment>dev</environment>
+              <region>us-east-2</region>
+              <workers>1</workers>
+              <workerType>MICRO</workerType>
+              <objectStoreV2>true</objectStoreV2>
+              <properties>
+                <anypoint.platform.client_id>${ap.client_id}</anypoint.platform.client_id>
+                <anypoint.platform.client_secret>${ap.client_secret}</anypoint.platform.client_secret>
+              </properties>
+            </cloudHubDeployment>
           </configuration>
         </plugin>
       </plugins>
