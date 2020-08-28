@@ -18,6 +18,12 @@
       <password>qWERTY123456</password>
     </server>
 
+    <server>
+      <id>mulesoft-services</id>
+      <username>guest-mule</username>
+      <password>Mulesoft1</password>
+    </server>
+
   </servers>
 
 </settings>
