@@ -22,6 +22,11 @@
   <properties>
     <ap.client_id>**Provided from the CLI**</ap.client_id>
     <ap.client_secret>**Provided from the CLI**</ap.client_secret>
+    <env>dev</env>
+    <encrypt.key>**Provided from the CLI**</encrypt.key>
+    <app.name.prefix>gkar-20200826-</app.name.prefix>
+    <app.name.suffix>-${env}</app.name.suffix>
+    <app.name>${app.name.prefix}${project.artifactId}${app.name.suffix}</app.name>
   </properties>
 
   <build>
@@ -62,8 +67,8 @@
             <cloudHubDeployment>
               <muleVersion>${app.runtime}</muleVersion>
               <server>cloudhub</server>
-              <applicationName>gkar-20200826-check-in-papi-dev</applicationName>
-              <environment>dev</environment>
+              <applicationName>${app.name}</applicationName>
+              <environment>${env}</environment>
               <region>us-east-2</region>
               <workers>1</workers>
               <workerType>MICRO</workerType>
@@ -71,6 +76,8 @@
               <properties>
                 <anypoint.platform.client_id>${ap.client_id}</anypoint.platform.client_id>
                 <anypoint.platform.client_secret>${ap.client_secret}</anypoint.platform.client_secret>
+                <env>${env}</env>
+                <encrypt.key>${encrypt.key}</encrypt.key>
               </properties>
             </cloudHubDeployment>
           </configuration>
